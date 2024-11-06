@@ -94,21 +94,21 @@ function billing() {
     <div>
       <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
       <div className="mx-auto max-w-3xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8">
-      <h2 className='text-center font-bold text-3xl my-3'>Upgrade With Monthly Plan</h2>
+      <h2 className='text-center font-bold text-4xl my-3 text-white'>Upgrade With Monthly Plan</h2>
  
-  <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:items-center md:gap-8">
+  <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:items-center md:gap-8 mt-28">
  
-    <div className="rounded-2xl bg-white border border-gray-200 p-6 shadow-sm sm:px-8 lg:p-12">
+    <div className="rounded-2xl bg-[#242424] text-white border-gray-200 p-6 shadow-sm sm:px-8 lg:p-12 hover:shadow-gray-500">
       <div className="text-center">
-        <h2 className="text-lg font-medium text-gray-900">
+        <h2 className="text-lg font-medium ">
           Free
           <span className="sr-only">Plan</span>
         </h2>
 
         <p className="mt-2 sm:mt-4">
-          <strong className="text-3xl font-bold text-gray-900 sm:text-4xl"> 0$ </strong>
+          <strong className="text-3xl font-bold sm:text-4xl"> 0$ </strong>
 
-          <span className="text-sm font-medium text-gray-700">/month</span>
+          <span className="text-sm font-medium">/month</span>
         </p>
       </div>
 
@@ -125,7 +125,7 @@ function billing() {
             <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
           </svg>
 
-          <span className="text-gray-700"> 10,000 Words/Month </span>
+          <span className="text-white "> 10,000 Words/Month </span>
         </li>
 
         <li className="flex items-center gap-1">
@@ -140,7 +140,7 @@ function billing() {
             <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
           </svg>
 
-          <span className="text-gray-700"> 50+ Content Templates </span>
+          <span className="text-white"> 50+ Content Templates </span>
         </li>
 
         <li className="flex items-center gap-1">
@@ -155,7 +155,7 @@ function billing() {
             <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
           </svg>
 
-          <span className="text-gray-700"> Unlimted Download & Copy </span>
+          <span className="text-white"> Unlimted Download & Copy </span>
         </li>
 
         <li className="flex items-center gap-1">
@@ -170,7 +170,7 @@ function billing() {
             <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
           </svg>
 
-          <span className="text-gray-700"> 1 Month of History </span>
+          <span className="text-white"> 1 Month of History </span>
         </li>
       </ul>
 
@@ -184,17 +184,17 @@ function billing() {
         Currently Active Plan
       </a> */}
     </div>
-    <div className="rounded-2xl bg-white border border-gray-200 p-6 shadow-sm sm:px-8 lg:p-12">
+    <div className="rounded-2xl bg-[#242424] p-6 shadow-sm sm:px-8 lg:p-12 hover:shadow-gray-500">
       <div className="text-center">
-        <h2 className="text-lg font-medium text-gray-900">
+        <h2 className="text-lg font-medium text-white">
           Monthly
           <span className="sr-only">Plan</span>
         </h2>
 
         <p className="mt-2 sm:mt-4">
-          <strong className="text-3xl font-bold text-gray-900 sm:text-4xl"> 9.99$ </strong>
+          <strong className="text-3xl font-bold text-white sm:text-4xl"> 9.99$ </strong>
 
-          <span className="text-sm font-medium text-gray-700">/month</span>
+          <span className="text-sm font-medium text-white">/month</span>
         </p>
       </div>
 
@@ -211,7 +211,7 @@ function billing() {
             <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
           </svg>
 
-          <span className="text-gray-700"> 1,00,000 Words/Month  </span>
+          <span className="text-white"> 1,00,000 Words/Month  </span>
         </li>
 
         <li className="flex items-center gap-1">
@@ -226,7 +226,7 @@ function billing() {
             <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
           </svg>
 
-          <span className="text-gray-700"> 50+ Template Access </span>
+          <span className="text-white"> 50+ Template Access </span>
         </li>
 
         <li className="flex items-center gap-1">
@@ -241,7 +241,7 @@ function billing() {
             <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
           </svg>
 
-          <span className="text-gray-700"> Unlimated Download & Copy  </span>
+          <span className="text-white"> Unlimated Download & Copy  </span>
         </li>
 
         <li className="flex items-center gap-1">
@@ -256,7 +256,7 @@ function billing() {
             <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
           </svg>
 
-          <span className="text-gray-700"> 1 Year of History </span>
+          <span className="text-white"> 1 Year of History </span>
         </li>
       </ul>
 

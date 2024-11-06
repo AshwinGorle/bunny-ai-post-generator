@@ -33,9 +33,9 @@ async function History() {
         return template;
     }
   return (
-    <div className='m-5 p-5 border rounded-lg bg-white'>
-        <h2 className='font-bold text-3xl'>History</h2>
-        <p className='text-gray-500'>Search your previously generate AI content</p>
+    <div className='m-5 p-5  rounded-lg bg-black'>
+        <h2 className='font-bold text-5xl text-white '>History</h2>
+        <p className='text-gray-400'>Search your previously generate AI content</p>
         <div className='grid grid-cols-7 font-bold bg-secondary mt-5 py-3 px-3'>
             <h2 className='col-span-2'>TEMPLATE</h2>
             <h2 className='col-span-2'>AI RESP</h2>
@@ -46,13 +46,13 @@ async function History() {
         {HistoryList.map((item:HISTORY,index:number)=>(
             <>
             <div className='grid grid-cols-7 my-5 py-3 px-3'>
-            <h2 className='col-span-2 flex gap-2 items-center'>
+            <h2 className='col-span-2 flex gap-2 items-center text-white text-2xl'>
                 <Image src={GetTemplateName(item?.templateSlug)?.icon} width={25} height={25} alt='icon' />
                 {GetTemplateName(item.templateSlug)?.name}
             </h2>
-            <h2 className='col-span-2 line-clamp-3 mr-3'>{item?.aiResponse}</h2>
-            <h2>{item.createdAt}</h2>
-            <h2>{item?.aiResponse.length}</h2>
+            <h2 className='col-span-2 line-clamp-3 mr-3 text-white'>{item?.aiResponse}</h2>
+            <h2 className=' text-white'>{item.createdAt}</h2>
+            <h2 className=' text-white'>{item?.aiResponse.length}</h2>
             <h2>
               <CopyButton aiResponse={item.aiResponse} />
             </h2>

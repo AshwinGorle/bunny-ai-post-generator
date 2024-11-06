@@ -4,12 +4,12 @@ import React from 'react'
 
 function Header() {
   return (
-    <div className='p-5 shadow-sm border-b-2 bg-white flex justify-between items-center'>
-      <div className='flex gap-2 items-center
-       p-2 border rounded-md max-w-lg bg-white'>
-        <Search/>
+    <div className='p-5 shadow-sm bg-black flex justify-between items-center'>
+      <div className='flex gap-2 items-center border-[#242424] 
+      p-2 rounded-md max-w-lg bg-[#0a0a0a] '>
+        <Search color='white '/>
         <input type='text' placeholder='Search...'
-        className='outline-none'
+        className='outline-none text-white bg-[#0a0a0a] '
         />
       </div>
       <div className='flex gap-5 items-center'>

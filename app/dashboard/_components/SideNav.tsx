@@ -37,13 +37,13 @@ function SideNav() {
         console.log(path)
     },[])
 
-  return (
-    <div className='h-screen relative p-5 shadow-sm border bg-white'>
+return (
+    <div className='h-screen relative p-5 shadow-sm border-yellow-500 bg-black text-white'>
         <div className='flex justify-center'>
         <Image src={'/logo.svg'} alt='logo' width={120} height={100} />
         </div>
-        <hr className='my-6 border' />
-        <div className='mt-3'>
+        <hr className='my-6 border-[#242424] ' />
+        <div className='mt-11'>
             {MenuList.map((menu,index)=>(
                 <Link href={menu.path}>
                     <div className={`flex gap-2 mb-2 p-3
@@ -61,7 +61,7 @@ function SideNav() {
             <UsageTrack/>
         </div>
     </div>
-  )
+)
 }
 
 export default SideNav

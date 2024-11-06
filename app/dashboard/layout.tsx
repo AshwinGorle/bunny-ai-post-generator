@@ -20,7 +20,7 @@ function layout({
     <TotalUsageContext.Provider value={{totalUsage,setTotalUsage}}>
       <UserSubscriptionContext.Provider value={{userSubscription,setUserSubscription}}>
         <UpdateCreditUsageContext.Provider value={{updateCreditUsage,setUpdateCreditUsage}}>
-    <div className='bg-slate-100 min-h-screen'>
+    <div className='bg-black min-h-screen'>
         <div className='md:w-64 hidden md:block fixed'>
             <SideNav/>
         </div>
