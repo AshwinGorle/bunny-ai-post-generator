@@ -59,9 +59,9 @@ import { UpdateCreditUsageContext } from '@/app/(context)/UpdateCreditUsageConte
     }
 
 
-  return (
+return (
     <div className='m-5'>
-        <div className='bg-primary text-white p-3 rounded-lg'>
+        <div className='bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 text-white p-3 rounded-lg'>
             <h2 className='font-medium'>Credits</h2>
             <div className='h-2 bg-[#9981f9] w-full rounded-full mt-3'>
                 <div className='h-2 bg-white rounded-full'
@@ -72,9 +72,9 @@ import { UpdateCreditUsageContext } from '@/app/(context)/UpdateCreditUsageConte
             </div>
             <h2 className='text-sm my-2'>{totalUsage}/{maxWords} credit used</h2>
         </div>
-        <Button variant={'secondary'} className='w-full my-3 bg-primary text-black'>Upgrade</Button>
+        <Button variant={'secondary'} className='w-full my-3    bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 text-black'>Upgrade</Button>
     </div>
-  )
+)
 }
 
 export default UsageTrack
