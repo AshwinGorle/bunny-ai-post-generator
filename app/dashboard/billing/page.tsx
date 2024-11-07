@@ -8,7 +8,9 @@ import { UserSubscription } from '@/utils/schema';
 import { useUser } from '@clerk/nextjs';
 import moment from 'moment';
 import { UserSubscriptionContext } from '@/app/(context)/UserSubscriptionContext';
-function billing() {
+
+
+function Billing() {
 
   const [loading,setLoading]=useState(false);
   const {user}=useUser();
@@ -276,4 +278,4 @@ function billing() {
   )
 }
 
-export default billing
+export default Billing;
