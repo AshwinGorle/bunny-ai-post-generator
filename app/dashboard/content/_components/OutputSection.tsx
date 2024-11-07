@@ -17,7 +17,7 @@ function OutputSection({aiOutput}:props) {
   },[aiOutput])
 
   return (
-    <div className='bg-white shadow-lg border rounded-lg'>
+    <div className='bg-black text-white shadow-lg border rounded-lg'>
       <div className='flex justify-between items-center p-5'>
         <h2 className='font-medium text-lg'>Your Result</h2>
         <Button className='flex gap-2'
@@ -30,6 +30,7 @@ function OutputSection({aiOutput}:props) {
         initialEditType="wysiwyg"
         height="600px"
         useCommandShortcut={true}
+        theme={'dark'}
         onChange={()=>console.log(editorRef.current.getInstance().getMarkdown())}
       />
     </div>

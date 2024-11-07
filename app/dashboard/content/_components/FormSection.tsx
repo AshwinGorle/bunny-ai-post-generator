@@ -28,12 +28,12 @@ function FormSection({ selectedTemplate,userFormInput,loading }: PROPS) {
     }
 
     return (
-        <div className='p-5 shadow-md border rounded-lg bg-white'>
+        <div className='p-5 text-white shadow-md border rounded-lg bg-[#242424] '>
             {/* @ts-ignore */}
             <Image src={selectedTemplate?.icon}
                 alt='icon' width={70} height={70} />
             <h2 className='font-bold text-2xl mb-2 mt-4 text-primary'>{selectedTemplate?.name}</h2>
-            <p className='text-gray-500 text-sm'>{selectedTemplate?.desc}</p>
+            <p className='text-white text-sm'>{selectedTemplate?.desc}</p>
 
             <form className='mt-6' onSubmit={onSubmit}>
                 {selectedTemplate?.form?.map((item, index) => (
