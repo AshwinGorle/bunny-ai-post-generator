@@ -28,7 +28,7 @@ function FormSection({ selectedTemplate,userFormInput,loading }: PROPS) {
     }
 
     return (
-        <div className='p-5 shadow-md border rounded-lg bg-black'>
+        // <div className='p-5 shadow-md border rounded-lg bg-black'>
         <div className='p-5 text-white shadow-md border rounded-lg bg-[#242424] '>
             {/* @ts-ignore */}
             <Image src={selectedTemplate?.icon}
@@ -68,4 +68,4 @@ function FormSection({ selectedTemplate,userFormInput,loading }: PROPS) {
     )
 }
 
-export default FormSection
+export default FormSection;
