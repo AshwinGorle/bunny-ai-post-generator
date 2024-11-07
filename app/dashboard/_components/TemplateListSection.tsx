@@ -34,6 +34,7 @@ function TemplateListSection({userSearchInput}:any) {
       else{
         setTemplateList(Templates)
       }
+      
   },[userSearchInput])
 
 
