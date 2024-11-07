@@ -6,7 +6,7 @@ import { TotalUsageContext } from '../(context)/TotalUsageContext';
 import { UserSubscriptionContext } from '../(context)/UserSubscriptionContext';
 import { UpdateCreditUsageContext } from '../(context)/UpdateCreditUsageContext';
 
-function layout({
+function Layout({
     children,
   }: Readonly<{
     children: React.ReactNode;
@@ -38,4 +38,4 @@ function layout({
   )
 }
 
-export default layout
+export default Layout;
