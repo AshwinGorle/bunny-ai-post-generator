@@ -16,7 +16,7 @@ export default function Dashboard() {
   const [text] = useTypewriter({
     words: ["Welcome aboard, ! 🐰✨\n\nI'm Bunny, your new social media sidekick, and trust me, I'm all ears for whatever you need! 😆 Whether you're here to level up your socials or just chill with an AI rabbit who's got the hoppin' tips for going viral, you're in the right place!\n\nSo buckle up – or should I say, hop right in! – and let's make some social media magic together. 🪄🐇\n\n(And don't worry, I promise not to eat all your carrots… just a few! 🥕)"],
     loop: 1,
-    typeSpeed: 40,
+    typeSpeed: 30,
     deleteSpeed: 10,
   })
 
@@ -34,7 +34,7 @@ export default function Dashboard() {
 
       const closePopupTimeout = setTimeout(() => {
         handleClosePopup()
-      }, 12000)
+      }, 30000)
 
       return () => {
         clearTimeout(showPopupTimeout)
