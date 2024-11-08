@@ -29,7 +29,7 @@ export default function Dashboard() {
 
       const showNewContentTimeout = setTimeout(() => {
         setShowNewContent(true)
-      }, 4000)
+      }, 3000)
 
       const closePopupTimeout = setTimeout(() => {
         handleClosePopup()
