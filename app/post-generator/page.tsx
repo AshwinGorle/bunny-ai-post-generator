@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import { chatSession } from '@/utils/AiModal'
 import axios from "axios";
 import Image from "next/image";
 
@@ -8,10 +9,7 @@ export default function PostGenerator() {
   const [prompt, setPrompt] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
   const [images, setImages] = useState<string[]>([
-    "https://www.hindustantimes.com/ht-img/img/2024/10/30/1600x900/choti_diwali_wishes_1730275295004_1730275295284.png",
-    "https://th.bing.com/th/id/OIP.bKqByVEFi-TUjGufvJf6qQHaHa?w=700&h=700&rs=1&pid=ImgDetMain",
-    "https://img.freepik.com/premium-psd/happy-diwali-background_846732-733.jpg",
-    "https://th.bing.com/th/id/OIP.dy1jOxTVHu4nuwGObW1qQQHaJ4?w=480&h=640&rs=1&pid=ImgDetMain"
+    
   ]);
   const [caption, setCaption] = useState<string>("");
   const [selectedImage, setSelectedImage] = useState<string>("");
@@ -22,24 +20,43 @@ export default function PostGenerator() {
     setCaption("");
 
     try {
-      // Unsplash API URL and headers
-      const response = await axios.get("https://api.unsplash.com/search/photos", {
+      // Unsplash API for images
+      const unsplashResponse = await axios.get("https://api.unsplash.com/search/photos", {
         params: {
-          query: prompt,       // search term
-          per_page: 4,         // limit to 4 images
+          query: prompt,
+          per_page: 4,
           orientation: "landscape"
         },
         headers: {
-          Authorization: `Client-ID ciu0A0apCaJPLYauOdXlZXztXU7ccu_OgEr9Gubr1ZY`, // Updated Access Key
+          Authorization: `Client-ID ${process.env.NEXT_PUBLIC_UNSPLASH_ACCESS_KEY}`
         }
       });
-      
-      // Extract image URLs from the response
-      const imageUrls = response.data.results.map((image: any) => image.urls.regular);
-      console.log("images from api : ", imageUrls)
+
+      const imageUrls = unsplashResponse.data.results.map((image: any) => image.urls.regular);
       setImages(imageUrls);
+
+      // Gemini API for caption
+      // const geminiResponse = await axios.post(
+      //   "https://gemini.googleapis.com/v1/generateCaption",
+      //   { prompt }, // assuming this is the required format for Gemini
+      //   {
+      //     headers: {
+      //       Authorization: `Bearer ${process.env.NEXT_PUBLIC_GOOGLE_GEMINI_API_KEY}`
+      //     }
+      //   }
+      // );
+      
+     
+        const FinalAIPrompt = prompt + ", " + "Generate only one instagram post caption in the given context";
+        const result = await chatSession.sendMessage(FinalAIPrompt);
+        
+        setCaption(result?.response.text());
+    
+
+      // setCaption(geminiResponse.data.caption); // assuming `caption` is the response field
+
     } catch (error) {
-      console.error("Error fetching images from Unsplash:", error);
+      console.error("Error fetching images or caption:", error);
     } finally {
       setLoading(false);
     }
@@ -49,11 +66,15 @@ export default function PostGenerator() {
     setSelectedImage(imageUrl);
   };
 
+  const handleCopyCaption = () => {
+    navigator.clipboard.writeText(caption);
+    alert("Caption copied to clipboard!");
+  };
+
   return (
     <div className="min-h-screen bg-black text-white flex flex-col items-center justify-center p-4">
       <h1 className="text-3xl font-bold mb-6 text-gray-200">AI Post Generator</h1>
 
-      {/* Prompt Input */}
       <textarea
         className="w-full max-w-lg p-4 mb-4 text-gray-200 bg-[#1e1e1e] border border-gray-600 rounded-md focus:outline-none focus:border-blue-500"
         placeholder="Enter your prompt here..."
@@ -62,7 +83,6 @@ export default function PostGenerator() {
         rows={4}
       ></textarea>
 
-      {/* Generate Button */}
       <button
         onClick={handleGenerate}
         disabled={loading}
@@ -74,6 +94,19 @@ export default function PostGenerator() {
       >
         {loading ? "Generating..." : "Generate"}
       </button>
+
+      {/* Display Caption */}
+      {caption && (
+        <div className="mt-4 w-full max-w-3xl p-4 bg-[#1e1e1e] text-lg text-gray-300 border border-gray-600 rounded-md flex justify-between items-center">
+          <span>{caption}</span>
+          <button
+            onClick={handleCopyCaption}
+            className="ml-4 px-4 py-2 text-sm bg-blue-500 hover:bg-blue-600 rounded-md text-white"
+          >
+            Copy
+          </button>
+        </div>
+      )}
 
       {/* Display Images */}
       {images.length > 0 && (
@@ -97,25 +130,6 @@ export default function PostGenerator() {
               />
             </div>
           ))}
-        </div>
-      )}
-
-      {/* Display Caption */}
-      {caption && (
-        <div className="mt-4 w-full max-w-3xl p-4 bg-[#1e1e1e] text-lg text-gray-300 border border-gray-600 rounded-md">
-          {caption}
-        </div>
-      )}
-
-      {/* State Values (selected image and caption) */}
-      {selectedImage && caption && (
-        <div className="mt-4 text-gray-400">
-          <p>
-            <strong>Selected Image URL:</strong> {selectedImage}
-          </p>
-          <p>
-            <strong>Caption:</strong> {caption}
-          </p>
         </div>
       )}
     </div>
