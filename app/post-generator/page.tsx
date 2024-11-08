@@ -62,7 +62,7 @@ export default function PostGenerator() {
   const handleCreatePost = () => {
     console.log("Selected Image:", selectedImage)
     console.log("Caption:", caption)
-    router.push("/comming-soon");
+    router.push(`/publish-post?url=${selectedImage}&caption=${caption}`);
   }
 
   return (
