@@ -189,7 +189,7 @@ export default [
         ]
     },
     {
-        name: 'Instagram Post Generator',
+        name: 'Instagram Template Generator',
         desc: 'Ready to make your Instagram pop? Let Bunny create some cool posts for you based on your keywords! 🐰📸',
         icon: 'https://cdn-icons-png.flaticon.com/128/15713/15713420.png',
         category: 'blog',
