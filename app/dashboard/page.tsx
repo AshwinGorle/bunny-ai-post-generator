@@ -22,7 +22,7 @@ export default function Dashboard() {
   // Use typewriter hook to dynamically generate the text with added color
   const [text] = useTypewriter({
     words: [
-      "Welcome aboard, ! 🐰✨\n\nI'm Bunny, your new social media sidekick, and trust me, I'm all ears for whatever you need! 😆 Whether you're here to level up your socials or just chill with an AI rabbit who's got the hoppin' tips for going viral, you're in the right place!\n\nSo buckle up – or should I say, hop right in! – and let's make some social media magic together. 🪄🐇\n\n(And don't worry, I promise not to eat all your carrots… just a few! 🥕)"
+      `Welcome aboard, ${user?.firstName || 'Guest'}! 🐰✨\n\nI'm Bunny, your new social media sidekick, and trust me, I'm all ears for whatever you need! 😆 Whether you're here to level up your socials or just chill with an AI rabbit who's got the hoppin' tips for going viral, you're in the right place!\n\nSo buckle up – or should I say, hop right in! – and let's make some social media magic together. 🪄🐇\n\n(And don't worry, I promise not to eat all your carrots… just a few! 🥕)`
     ],
     loop: 1,
     typeSpeed: 30,
@@ -152,11 +152,11 @@ export default function Dashboard() {
                     exit={{ opacity: 0 }}
                     className="p-6 text-white"
                   >
-                    <div className="h-[400px] overflow-y-auto">
+                    <div className="h-full overflow-y-auto">
                       <p className="whitespace-pre-line text-lg font-medium leading-relaxed">
-                        {text.replace("Welcome aboard,", `Welcome aboard, ${user?.firstName || 'Guest'}!`)}
-                        <Cursor />
+                        {text}
                       </p>
+                      <Cursor />
                     </div>
                   </motion.div>
                 )}
