@@ -4,6 +4,7 @@ import React, { useState, useEffect, useRef } from "react"
 import Image from "next/image"
 import { motion, AnimatePresence } from "framer-motion"
 import { useTypewriter, Cursor } from 'react-simple-typewriter'
+import confetti from "canvas-confetti" // Import confetti
 import SearchSection from "./_components/SearchSection"
 import TemplateListSection from "./_components/TemplateListSection"
 
@@ -43,6 +44,34 @@ export default function Dashboard() {
       }
     }
   }, [])
+
+  useEffect(() => {
+    if (showPopup) {
+      // Play confetti animation
+      const end = Date.now() + 2 * 1000 // 2 seconds of confetti
+      const colors = ["#a786ff", "#fd8bbc", "#eca184", "#f8deb1"]
+
+      const frame = () => {
+        if (Date.now() > end) return
+        confetti({
+          particleCount: 5,
+          angle: 60,
+          spread: 55,
+          origin: { x: 0, y: 0.5 },
+          colors,
+        })
+        confetti({
+          particleCount: 5,
+          angle: 120,
+          spread: 55,
+          origin: { x: 1, y: 0.5 },
+          colors,
+        })
+        requestAnimationFrame(frame)
+      }
+      frame()
+    }
+  }, [showPopup]) // Runs every time `showPopup` changes
 
   useEffect(() => {
     const handleWindowClose = () => {
