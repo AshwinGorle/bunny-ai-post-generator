@@ -60,7 +60,7 @@ function UsageTrack() {
 
   return (
     <div className='m-5'>
-      <div className='bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 text-white p-3 rounded-lg'>
+      <div className=' bg-gradient-to-l from-indigo-500 via-purple-500 to-pink-500 hover:from-indigo-600 hover:to-pink-600 text-white p-3 rounded-lg'>
         <h2 className='font-medium'>Carrots</h2>
         <div className='h-2 bg-[#9981f9] w-full rounded-full mt-3'>
           <div className='h-2 bg-white rounded-full'
@@ -85,7 +85,7 @@ function UsageTrack() {
       >
         <Button 
           variant={'secondary'} 
-          className='w-full my-3 bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 text-black'
+          className='w-full my-3 bg-gradient-to-r text-white from-indigo-500 via-purple-500 to-pink-500 hover:from-indigo-600 hover:to-pink-600'
           onClick={handleUpgradeClick} // Trigger CoolMode effect on click
         >
           Upgrade
