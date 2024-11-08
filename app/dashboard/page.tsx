@@ -4,6 +4,8 @@ import React, { useState, useEffect, useRef } from "react"
 import Image from "next/image"
 import { motion, AnimatePresence } from "framer-motion"
 import { useTypewriter, Cursor } from 'react-simple-typewriter'
+
+// @ts-ignore
 import confetti from "canvas-confetti" // Import confetti
 import SearchSection from "./_components/SearchSection"
 import TemplateListSection from "./_components/TemplateListSection"
