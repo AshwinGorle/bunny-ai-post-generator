@@ -40,10 +40,10 @@ const applyParticleEffect = (element, options) => {
   function generateParticle() {
     const size =
       options?.size || sizes[Math.floor(Math.random() * sizes.length)]
-    const speedHorz = options?.speedHorz || Math.random() * 10
+    const speedHorz = options?.speedHorz || Math.random() * 15
     const speedUp = options?.speedUp || Math.random() * 25
     const spinVal = Math.random() * 360
-    const spinSpeed = Math.random() * 15 * (Math.random() <= 0.5 ? -1 : 1)
+    const spinSpeed = Math.random() * 10 * (Math.random() <= 0.5 ? -1 : 1)
     const top = mouseY - size / 2
     const left = mouseX - size / 2
     const direction = Math.random() <= 0.5 ? -1 : 1
