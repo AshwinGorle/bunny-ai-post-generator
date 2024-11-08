@@ -6,7 +6,7 @@ import Link from 'next/link'
 function TemplateCard(item:TEMPLATE) {
   return (
     <Link href={'/dashboard/content/'+item?.slug}>
-      <div className='p-5 shadow-md rounded-md border-white bg-[#242424] text-white
+      <div className='p-5 shadow-md border border-gray-600 rounded-lg bg-[#1e1e1f] text-white
       flex flex-col gap-3  cursor-pointer h-full hover:scale-105 transition-all
       hover:bg-black hover:border hover:border-white hover:shadow-gray-500'>
           <Image src={item.icon} alt='icon' 
