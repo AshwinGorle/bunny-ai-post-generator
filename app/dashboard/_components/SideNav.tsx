@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import React, { useEffect } from 'react'
 import UsageTrack from './UsageTrack'
+// import SparklesText  from '@/components/ui/magicui/SparklesText'; // Import SparklesText
 
 function SideNav() {
 
@@ -40,9 +41,11 @@ function SideNav() {
 return (
     <div className='h-screen relative p-5 shadow-sm  bg-[#242424] text-white '>
         <div className='flex justify-center'>
-        <h1 className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-500 via-pink-500 to-blue-500">
-                Bunny Ai
+         <h1 className="text-5xl">🐰</h1>
+         <h1 className="text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-500 via-pink-500 to-blue-500">
+                Bunny
               </h1>
+              {/* <SparklesText className="" text="Bunny" /> */}
         </div>
         <hr className='my-6 border-[#242424] ' />
         <div className='mt-11'>

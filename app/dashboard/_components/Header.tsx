@@ -14,7 +14,7 @@ function Header() {
       </div>
       <div className='flex gap-5 items-center'>
         <h2 className='bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 p-1 rounded-full text-sm text-white px-2'>
-        🔥 Join Membership just for Rs.99/Month</h2>
+        🐰 Need help? Bunny’s got your back! 🌟</h2>  
       <UserButton/>
       </div>
     </div>
