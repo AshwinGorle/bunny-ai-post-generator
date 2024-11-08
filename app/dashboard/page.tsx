@@ -7,9 +7,10 @@ import Image from "next/image";
 function Dashboard() {
   const [userSearchInput, setUserSearchInput] = useState<string>("");
   const [showPopup, setShowPopup] = useState<boolean>(false);
+  const [popupVisible, setPopupVisible] = useState<boolean>(false);
   const [closing, setClosing] = useState<boolean>(false);
 
-  // Close popup when the user closes the browser window
+  // Remove popupShown from localStorage on window close
   useEffect(() => {
     const handleWindowClose = () => {
       localStorage.removeItem("popupShown");
@@ -20,25 +21,35 @@ function Dashboard() {
     };
   }, []);
 
-  // Check if popup has been shown before
+  // Show popup with delay if it hasn't been shown before
   useEffect(() => {
     const popupShown = localStorage.getItem("popupShown");
     if (!popupShown) {
-      setShowPopup(true);
-      localStorage.setItem("popupShown", "true");
+      const delayTimeout = setTimeout(() => {
+        setPopupVisible(true);
+        setShowPopup(true);
+        localStorage.setItem("popupShown", "true");
+      }, 2000);
 
-      // Automatically close the popup after 3 seconds
-      const timeout = setTimeout(() => {
+      const closeTimeout = setTimeout(() => {
         handleClosePopup();
-      }, 3000);
-      return () => clearTimeout(timeout);
+      }, 8000);
+
+      return () => {
+        clearTimeout(delayTimeout);
+        clearTimeout(closeTimeout);
+      };
     }
   }, []);
 
-  // Function to close the popup with animation
+  // Close popup with animation
   const handleClosePopup = () => {
     setClosing(true);
-    setTimeout(() => setShowPopup(false), 300); // Delay to allow animation to finish
+    setTimeout(() => {
+      setShowPopup(false);
+      setPopupVisible(false);
+      setClosing(false);
+    }, 300);
   };
 
   return (
@@ -46,20 +57,26 @@ function Dashboard() {
       {/* Popup Overlay */}
       {showPopup && (
         <div
-          className={`fixed inset-0 z-10 flex items-center justify-center bg-black bg-opacity-50 backdrop-blur-sm transition-opacity duration-300 ease-in-out ${closing ? "opacity-0" : "opacity-100"}`}
+          className={`fixed inset-0 z-10 flex items-center justify-center bg-black bg-opacity-50 backdrop-blur-sm transition-opacity duration-300 ease-in-out ${
+            closing ? "opacity-0" : "opacity-100"
+          }`}
         >
-          {/* Popup Box with Scale-Down Animation */}
+          {/* Popup Box with Scale-Up and Fade-In Animation */}
           <div
-            className={`relative flex w-[90%] max-w-[50%] h-[30%] max-h-[40%] md:w-1/2 md:h-2/5 rounded-lg border border-white shadow-[0_0_10px_4px_rgba(255,255,255,0.5)] bg-black overflow-hidden transform transition-transform duration-600 ease-in-out ${closing ? "scale-90 opacity-0" : "scale-100 opacity-100"}`}
+            className={`relative flex w-[90%] max-w-[50%] h-[30%] max-h-[40%] md:w-1/2 md:h-2/5 rounded-lg border border-white shadow-[0_0_10px_4px_rgba(255,255,255,0.5)] bg-black overflow-hidden transform transition-all duration-300 ease-in-out ${
+              popupVisible && !closing ? "scale-100 opacity-100" : "scale-75 opacity-0"
+            }`}
           >
             {/* Left Image Section */}
-            <div className="w-1/2 h-full">
-              <Image
-                src="https://res.cloudinary.com/dpgj9mrly/raw/upload/v1731043162/CRM/profile/client/671e5b32864fce0e937a56cb.jpg"
-                alt="Popup Image"
-                layout="fill"
-                objectFit="cover"
-              />
+            <div className="w-1/2 h-full flex items-center justify-center bg-gray-800">
+              <div className="relative w-full h-full max-w-[100%] max-h-[100%]">
+                <Image
+                  src="https://res.cloudinary.com/dpgj9mrly/raw/upload/v1731043162/CRM/profile/client/671e5b32864fce0e937a56cb.jpg"
+                  alt="Popup Image"
+                  layout="fill"
+                  objectFit="cover" // Ue contain to maintain aspect ratio
+                />
+              </div>
             </div>
 
             {/* Right Text Section */}
@@ -67,6 +84,9 @@ function Dashboard() {
               <h2 className="text-xl md:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-500 via-pink-500 to-blue-500 animate-pulse">
                 Welcome To
               </h2>
+              {/* <h2 className="text-xl md:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-500 via-pink-500 to-blue-500 animate-pulse">
+                To
+              </h2> */}
               <h2 className="text-xl md:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-500 via-pink-500 to-blue-500 animate-pulse">
                 Bunny
               </h2>
@@ -84,7 +104,7 @@ function Dashboard() {
       )}
 
       {/* Main Dashboard Content */}
-      <div className={`relative ${showPopup ? "blur-sm pointer-events-none" : ""}`}>
+      <div className={`relative ${showPopup && popupVisible ? "blur-sm pointer-events-none" : ""}`}>
         {/* Search Section */}
         <SearchSection onSearchInput={(value: string) => setUserSearchInput(value)} />
 
