@@ -3,78 +3,103 @@ import { Button } from '@/components/ui/button'
 import { db } from '@/utils/db';
 import { AIOutput, UserSubscription } from '@/utils/schema';
 import { useUser } from '@clerk/nextjs';
-
 import { eq } from 'drizzle-orm';
 import React, { useContext, useEffect, useState } from 'react'
 import { HISTORY } from '../history/page';
 import { TotalUsageContext } from '@/app/(context)/TotalUsageContext';
 import { UserSubscriptionContext } from '@/app/(context)/UserSubscriptionContext';
 import { UpdateCreditUsageContext } from '@/app/(context)/UpdateCreditUsageContext';
+import { CoolMode } from "@/components/ui/magicui/cool-mode"; // Import CoolMode
 
- function UsageTrack() {
+function UsageTrack() {
 
-    const {user}=useUser();
-    const {totalUsage,setTotalUsage}=useContext(TotalUsageContext)
-    const {userSubscription,setUserSubscription}=useContext(UserSubscriptionContext);
-    const [maxWords,setMaxWords]=useState(10000)
-    const {updateCreditUsage,setUpdateCreditUsage}=useContext(UpdateCreditUsageContext);
-    useEffect(()=>{
-        user&&GetData();
-        user&&IsUserSubscribe();
-    },[user]);
+  const { user } = useUser();
+  const { totalUsage, setTotalUsage } = useContext(TotalUsageContext)
+  const { userSubscription, setUserSubscription } = useContext(UserSubscriptionContext);
+  const [maxWords, setMaxWords] = useState(10000)
+  const { updateCreditUsage, setUpdateCreditUsage } = useContext(UpdateCreditUsageContext);
+  const [showCoolMode, setShowCoolMode] = useState(false); // State to toggle CoolMode
 
+  useEffect(() => {
+    user && GetData();
+    user && IsUserSubscribe();
+  }, [user]);
 
-    useEffect(()=>{
-        user&&GetData();
-    },[updateCreditUsage&&user]);
+  useEffect(() => {
+    user && GetData();
+  }, [updateCreditUsage && user]);
 
-    const GetData=async()=>{
-         {/* @ts-ignore */}
-        const result:HISTORY[]=await db.select().from(AIOutput).where(eq(AIOutput.createdBy,user?.primaryEmailAddress?.emailAddress));
-        
-        GetTotalUsage(result)
+  const GetData = async () => {
+    {/* @ts-ignore */}
+    const result: HISTORY[] = await db.select().from(AIOutput).where(eq(AIOutput.createdBy, user?.primaryEmailAddress?.emailAddress));
+    GetTotalUsage(result)
+  }
+
+  const IsUserSubscribe = async () => {
+    {/* @ts-ignore */}
+    const result = await db.select().from(UserSubscription).where(eq(UserSubscription.email, user?.primaryEmailAddress?.emailAddress));
+    console.log(result)
+    if (result.length > 0) {
+      setUserSubscription(true);
+      setMaxWords(1000000);
     }
+  }
 
-    const IsUserSubscribe=async()=>{
-         {/* @ts-ignore */}
-        const result=await db.select().from(UserSubscription).where(eq(UserSubscription.email,user?.primaryEmailAddress?.emailAddress));
-        console.log(result)
-        if(result.length>0)
-            {
-                setUserSubscription(true);
-                setMaxWords(1000000);
-            }
-    }
+  const GetTotalUsage = (result: HISTORY[]) => {
+    let total: number = 0;
+    result.forEach(element => {
+      total = total + Number(element.aiResponse?.length)
+    });
+    setTotalUsage(total)
+    console.log(total);
+  }
 
+  const handleUpgradeClick = () => {
+    setShowCoolMode(true); // Show CoolMode when Upgrade is clicked
+  }
 
-
-    const GetTotalUsage=(result:HISTORY[])=>{
-        let total:number=0;
-        result.forEach(element => {
-            total=total+Number(element.aiResponse?.length) 
-        });
-
-        setTotalUsage(total)
-        console.log(total);
-    }
-
-
-return (
+  return (
     <div className='m-5'>
-        <div className='bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 text-white p-3 rounded-lg'>
-            <h2 className='font-medium'>Carrots</h2>
-            <div className='h-2 bg-[#9981f9] w-full rounded-full mt-3'>
-                <div className='h-2 bg-white rounded-full'
-                style={{
-                    width:totalUsage/maxWords>1?100+"%":(totalUsage/maxWords)*100+"%"
-                }}
-                ></div>
-            </div>
-            <h2 className='text-sm my-2'>{totalUsage}/{maxWords} Carrots used</h2>
+      <div className='bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 text-white p-3 rounded-lg'>
+        <h2 className='font-medium'>Carrots</h2>
+        <div className='h-2 bg-[#9981f9] w-full rounded-full mt-3'>
+          <div className='h-2 bg-white rounded-full'
+            style={{
+              width: totalUsage / maxWords > 1 ? 100 + "%" : (totalUsage / maxWords) * 100 + "%"
+            }}
+          ></div>
         </div>
-        <Button variant={'secondary'} className='w-full my-3    bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 text-black'>Upgrade</Button>
+        <h2 className='text-sm my-2'>{totalUsage}/{maxWords} Carrots used</h2>
+      </div>
+
+      {/* Wrap the existing button inside the CoolMode component */}
+      <CoolMode
+        options={{
+          particle: "/images/carrot.png", // Particle image for CoolMode
+        //   size: 100, // Size of the particle
+        //   particleCount: 50, // Number of particles
+        // //   speedHorz: 3, // Horizontal speed
+        // //   speedUp: 5 // Vertical speed
+        
+        }}
+      >
+        <Button 
+          variant={'secondary'} 
+          className='w-full my-3 bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 text-black'
+          onClick={handleUpgradeClick} // Trigger CoolMode effect on click
+        >
+          Upgrade
+        </Button>
+      </CoolMode>
+
+      {/* You can show additional content or effects once the button is clicked, if needed
+      {showCoolMode && (
+        <div className="mt-5 text-center">
+          <p>Upgrade initiated with cool effects! 🥕✨</p>
+        </div>
+      )} */}
     </div>
-)
+  )
 }
 
-export default UsageTrack
+export default UsageTrack;
