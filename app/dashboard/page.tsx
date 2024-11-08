@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState, useEffect } from "react"
+import React, { useState, useEffect, useRef } from "react"
 import Image from "next/image"
 import { motion, AnimatePresence } from "framer-motion"
 import { useTypewriter, Cursor } from 'react-simple-typewriter'
@@ -11,11 +11,12 @@ export default function Dashboard() {
   const [userSearchInput, setUserSearchInput] = useState<string>("")
   const [showPopup, setShowPopup] = useState<boolean>(false)
   const [showNewContent, setShowNewContent] = useState<boolean>(false)
+  const videoRef = useRef<HTMLVideoElement>(null)
 
   const [text] = useTypewriter({
     words: ["Welcome aboard, ! 🐰✨\n\nI'm Bunny, your new social media sidekick, and trust me, I'm all ears for whatever you need! 😆 Whether you're here to level up your socials or just chill with an AI rabbit who's got the hoppin' tips for going viral, you're in the right place!\n\nSo buckle up – or should I say, hop right in! – and let's make some social media magic together. 🪄🐇\n\n(And don't worry, I promise not to eat all your carrots… just a few! 🥕)"],
     loop: 1,
-    typeSpeed: 10,
+    typeSpeed: 40,
     deleteSpeed: 10,
   })
 
@@ -25,15 +26,15 @@ export default function Dashboard() {
       const showPopupTimeout = setTimeout(() => {
         setShowPopup(true)
         localStorage.setItem("popupShown", "true")
-      }, 500)
+      }, 2000)
 
       const showNewContentTimeout = setTimeout(() => {
         setShowNewContent(true)
-      }, 3000)
+      }, 6000)
 
       const closePopupTimeout = setTimeout(() => {
         handleClosePopup()
-      }, 15000)
+      }, 12000)
 
       return () => {
         clearTimeout(showPopupTimeout)
@@ -56,6 +57,9 @@ export default function Dashboard() {
   const handleClosePopup = () => {
     setShowPopup(false)
     setShowNewContent(false)
+    if (videoRef.current) {
+      videoRef.current.pause()
+    }
   }
 
   return (
@@ -83,12 +87,14 @@ export default function Dashboard() {
                     className="flex"
                   >
                     <div className="relative w-2/5 overflow-hidden">
-                      <Image
-                        src="https://res.cloudinary.com/dpgj9mrly/raw/upload/v1731043162/CRM/profile/client/671e5b32864fce0e937a56cb.jpg"
-                        alt="Popup Image"
-                        layout="fill"
-                        objectFit="cover"
-                        className="transition-transform duration-300 hover:scale-110"
+                      <video
+                        ref={videoRef}
+                        src="https://res.cloudinary.com/dpgj9mrly/video/upload/v1731047532/CRM/Profile/client/wecomevideo_maywnx.mp4"
+                        className="absolute inset-0 w-full h-full object-cover"
+                        autoPlay
+                        muted
+                        loop
+                        playsInline
                       />
                     </div>
                     <div className="flex flex-col items-center justify-center w-3/5 p-6 text-white">
