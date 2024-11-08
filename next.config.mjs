@@ -2,7 +2,7 @@
 const nextConfig = {
     
     images:{
-        domains:['cdn-icons-png.flaticon.com'],
+        domains:['cdn-icons-png.flaticon.com', 'https://res.cloudinary.com'],
         unoptimized:true
     },
     eslint: {

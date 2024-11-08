@@ -40,7 +40,9 @@ function SideNav() {
 return (
     <div className='h-screen relative p-5 shadow-sm  bg-[#242424] text-white '>
         <div className='flex justify-center'>
-        <Image src={'/logo.svg'} alt='logo' width={120} height={100} />
+        <h1 className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-500 via-pink-500 to-blue-500">
+                Bunny Ai
+              </h1>
         </div>
         <hr className='my-6 border-[#242424] ' />
         <div className='mt-11'>
