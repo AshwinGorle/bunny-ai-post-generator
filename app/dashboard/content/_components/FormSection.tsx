@@ -35,7 +35,7 @@ function FormSection({ selectedTemplate,userFormInput,loading }: PROPS) {
                 alt='icon' width={70} height={70} />
             <h2 className='font-bold text-2xl mb-2 mt-4 text-primary'>{selectedTemplate?.name}</h2>
             <p className='text-white text-sm'>{selectedTemplate?.desc}</p>
-            <p className='text-white text-sm'>{selectedTemplate?.desc}</p>
+            {/* <p className='text-white text-sm'>{selectedTemplate?.desc}</p> */}
 
             <form className='mt-6 text-white' onSubmit={onSubmit}>
                 {selectedTemplate?.form?.map((item, index) => (
