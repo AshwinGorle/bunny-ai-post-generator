@@ -4,6 +4,7 @@ import React, { useState } from "react"
 import { chatSession } from '@/utils/AiModal'
 import axios from "axios"
 import Image from "next/image"
+import { useRouter } from 'next/navigation'
 
 export default function PostGenerator() {
   const [prompt, setPrompt] = useState("")
@@ -11,7 +12,9 @@ export default function PostGenerator() {
   const [images, setImages] = useState<string[]>([])
   const [caption, setCaption] = useState("")
   const [selectedImage, setSelectedImage] = useState("")
+  const router = useRouter();
 
+  
   const handleGenerate = async () => {
     setLoading(true)
     setImages([])
@@ -59,6 +62,7 @@ export default function PostGenerator() {
   const handleCreatePost = () => {
     console.log("Selected Image:", selectedImage)
     console.log("Caption:", caption)
+    router.push(`/publish-post?url=${selectedImage}&caption=${caption}`);
   }
 
   return (
@@ -168,7 +172,7 @@ export default function PostGenerator() {
 
       <button
         onClick={handleCreatePost}
-        className="mt-6 py-2 px-6 bg-green-500 hover:bg-green-600 text-white rounded-md font-semibold transition-all duration-300 ease-in-out transform hover:scale-105"
+        className="mt-6 py-2 px-6 bg-green-500 hover:bg-green-600 text-white rounded-md font-semibold transition-all duration-300 ease-in-out transform hover:scale-105 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 hover:from-indigo-600 hover:to-pink-600"
       >
         Create Post
       </button>

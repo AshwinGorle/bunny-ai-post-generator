@@ -39,15 +39,15 @@ function SideNav() {
     },[])
 
 return (
-    <div className='h-screen relative p-5 shadow-sm  bg-[#242424] text-white '>
-        <div className='flex justify-center'>
+    <div className='h-screen relative p-5 shadow-sm  bg-[#1e1e1f] text-white '>
+        <div className='flex justify-center  '>
          <h1 className="text-5xl">🐰</h1>
          <h1 className="text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-500 via-pink-500 to-blue-500">
                 Bunny
               </h1>
               {/* <SparklesText className="" text="Bunny" /> */}
         </div>
-        <hr className='my-6 border-[#242424] ' />
+        <hr className='my-6 border-gray-600' />
         <div className='mt-11'>
             {MenuList.map((menu,index)=>(
                 <Link href={menu.path} key={index}>

@@ -29,7 +29,7 @@ function FormSection({ selectedTemplate,userFormInput,loading }: PROPS) {
 
     return (
         // <div className='p-5 shadow-md border rounded-lg bg-black'>
-        <div className='p-5 text-white shadow-md border rounded-lg bg-[#242424] '>
+        <div className='p-5 text-white shadow-md border border-gray-600 rounded-lg bg-[#1e1e1f] '>
             {/* @ts-ignore */}
             <Image src={selectedTemplate?.icon}
                 alt='icon' width={70} height={70} />
@@ -48,6 +48,7 @@ function FormSection({ selectedTemplate,userFormInput,loading }: PROPS) {
                             : item.field == 'textarea' ?
                             <>
                                 <Textarea name={item.name} required={item?.required}
+                                className='border border-gray-600'
                                 rows={5}
                                 maxLength={2000}
                                 onChange={handleInputChange} /> 
