@@ -1,6 +1,7 @@
 import { UserButton } from '@clerk/nextjs'
 import { Search } from 'lucide-react'
 import React from 'react'
+import {dark} from "@clerk/themes";
 
 function Header() {
   return (
@@ -15,7 +16,7 @@ function Header() {
       <div className='flex gap-5 items-center'>
         <h2 className='bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 p-1 rounded-full text-sm text-white px-2'>
         🐰 Need help? Bunny’s got your back! 🌟</h2>  
-      <UserButton/>
+      <UserButton appearance={{baseTheme:dark}} />
       </div>
     </div>
   )
